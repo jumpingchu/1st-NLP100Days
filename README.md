@@ -26,3 +26,14 @@
     * `suggest_freq()` 動態調整詞頻
     * `posseg.cut()` 詞性標註
     * `tokenize()` 斷詞位置標註
+
+## Day 7
+* 使用 CkipTagger 進行繁體中文斷詞
+    * 安裝 ckiptagger, tensorflow, gdown (Google Drive 下載)
+    * `WS1` 斷詞
+    * `POS` 詞性標註
+    * `NER` 實體辨識
+    * `construct_dictionary(dict_word2weight)`
+    * `recommend_dictionary` 使用建議字典
+    * `coerce_dictionary` 使用強制字典（優先）
+
