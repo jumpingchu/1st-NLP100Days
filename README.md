@@ -30,7 +30,7 @@
 ## Day 7
 * 使用 CkipTagger 進行繁體中文斷詞
     * 安裝 ckiptagger, tensorflow, gdown (Google Drive 下載)
-    * `WS1` 斷詞
+    * `WS` 斷詞
     * `POS` 詞性標註
     * `NER` 實體辨識
     * `construct_dictionary(dict_word2weight)`
