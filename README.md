@@ -37,3 +37,7 @@
     * `recommend_dictionary` 使用建議字典
     * `coerce_dictionary` 使用強制字典（優先）
 
+## Day 8
+* 基礎語言模型：N-Gram
+    * Bigram 模型：`P(word1|start) * P(word2|word1) ... * P(end|word_x)`
+    
