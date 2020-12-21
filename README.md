@@ -1,12 +1,8 @@
 # 第一屆 NLP 經典機器學習馬拉松
 
-## Day 1 : Python 文字處理函數介紹 - 1
+## Day 1 ~ 2 : Python 文字處理函數介紹
 
-## Day 2 : Python 文字處理函數介紹 - 2
-
-## Day 3 : 正規表達式 - 基礎
-
-## Day 4 : 正規表達式 - 進階
+## Day 3 ~ 4 : 正規表達式
 
 ## Day 5 : NLP 中文斷詞概念
 * Trie 樹
@@ -36,7 +32,7 @@
 ## Day 9 : 基礎語言模型：N-Gram
 * 以 Python 建立 N-Gram 模型
 * 以 NLTK 套件實作 N-Gram
-* 找出所有中文字的方法：`re.findall(r'[\u4E00-\u9FA50-9]'`
+* 找出所有中文字 & 數字的方法：`re.findall(r'[\u4E00-\u9FA50-9]'`
 * `namedtuple(Name, attr)` 的使用
 * `sorted(iter_obj, key=lambda x: x[index])` 代表設定 x[index] 為排序依據
 
@@ -52,3 +48,6 @@
     * 如 `Noun`、`Verb`、`Adjective`等等
 
 ## Day 11 : 詞性標註 (POS Tagging)
+* `jieba.cut()`回傳一個 Generator，記得使用 `join` 來 `print`
+
+## Day 12 : 詞袋模型(Bag-of-words)
