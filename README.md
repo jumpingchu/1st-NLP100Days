@@ -39,3 +39,16 @@
 * 找出所有中文字的方法：`re.findall(r'[\u4E00-\u9FA50-9]'`
 * `namedtuple(Name, attr)` 的使用
 * `sorted(iter_obj, key=lambda x: x[index])` 代表設定 x[index] 為排序依據
+
+## Day 10 : 詞性標註 (POS Tagging)
+* 決定單詞的詞性前，除了考慮單詞本身，也要考慮前後單詞與整句話
+* 通常一個單詞會包含多種詞性
+* `詞幹提取(stemming)`：去除詞綴得到詞根
+* `Closed Class`：相對固定的詞類，不太會有新的詞類出現
+    * `pronouns`: she, he, I
+    * `preposition`: on, under, by
+
+* `Open Class`：容易有新詞被創造
+    * 如 `Noun`、`Verb`、`Adjective`等等
+
+## Day 11 : 詞性標註 (POS Tagging)
