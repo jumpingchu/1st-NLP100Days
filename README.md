@@ -87,4 +87,4 @@
 * 轉為詞袋：`CountVectorizer()`
 * 訓練預測分組：`train_test_split()`
 * 訓練：`classifier.fit()`
-預測：`classifier.predict()`
+* 預測：`classifier.predict()`
