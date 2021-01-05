@@ -73,3 +73,18 @@
 * `Lemmatization`: 取出單詞的 Lemma (詞條、詞元 = 字的原型)
 * SOTA model 指在特定研究任務或 benchmark（基準） 資料集上，目前最突出的 model。
 * 現今 SOTA 模型中較少用到 Stemming / Lemmatization 的技術，取而代之的是運用 NLP 模型 (e.g. BERT) 來進行單詞拆解，常見如 `Wordpiece`
+
+## Day 14 : 文字預處理
+### 預處理順序整理
+* 匯入套件
+* 讀取資料
+* 去除部分字元、轉小寫 `re.sub()`
+* 斷詞斷句：英文用 `nltk.word_tokenize()`、中文用 `jieba.cut()`
+* 移除贅字：`nltk.download('stopwords')`
+* 詞幹提取（英文）`PorterStemmer()`
+
+### 預測
+* 轉為詞袋：`CountVectorizer()`
+* 訓練預測分組：`train_test_split()`
+* 訓練：`classifier.fit()`
+預測：`classifier.predict()`
