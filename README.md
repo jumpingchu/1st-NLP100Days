@@ -88,3 +88,8 @@
 * 訓練預測分組：`train_test_split()`
 * 訓練：`classifier.fit()`
 * 預測：`classifier.predict()`
+
+## Day 15 : TF-IDF
+* 詞頻（term frequency，TF）指的是某一個給定的詞語在該檔案中出現的頻率
+* 逆向檔案頻率（inverse document frequency，IDF）是詞語普遍重要性的度量，由**總檔案數目**除以**包含該詞語之檔案的數目**，再將得到的**商取以10為底的對數**得到
+* 字詞的重要性隨著它在檔案中出現的次數成正比增加，但同時會隨著它在語料庫中出現的頻率成反比下降
