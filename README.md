@@ -46,7 +46,7 @@
 
 ## Part 2 : NLP 深度學習
 
-### Pytorch深度學習框架
+### Pytorch 深度學習框架
 - [Day 1: Pytorch 深度學習框架與開發環境](#day-1-pytorch-深度學習框架與開發環境part-2day001)
 
 <br>
