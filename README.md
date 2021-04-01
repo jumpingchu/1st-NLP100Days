@@ -43,7 +43,14 @@
     - [`正向點間互資訊(PPMI)`](#正向點間互資訊ppmi)
     - [`奇異值分解(SVD)`](#奇異值分解svd)
     - [`餘弦相似度(Cosine similarity)`](#餘弦相似度cosine-similarity)
+- [Day 16 - 17: 計數方法詞向量介紹 & 實作]()
 
+### NLP 與經典機器學習模型
+- [Day 18 : K-近鄰演算法](#day-18--k-近鄰演算法)
+    - [Supervised Learning (監督式學習)](#supervised-learning-監督式學習)
+    - [Unsupervised Learning (非監督式學習)](#unsupervised-learning-非監督式學習)
+
+---
 ## Part 2 : NLP 深度學習
 
 ### Pytorch 深度學習框架
@@ -175,6 +182,22 @@ tokenize()     # 斷詞位置標註
 * 降維手法之一，可將任意矩陣分解為三個矩陣的乘積(兩個方陣與一個對角矩陣)，並利用前 k 個奇異值佔所有奇異值和的大多數的特性來將向量由 n 維降至 k 維
 ### `餘弦相似度(Cosine similarity)`
 * 比較兩個詞向量的相似度最常用的方法
+
+## Day 18 : K-近鄰演算法
+### Supervised Learning (監督式學習)
+* 需要標注檔案 (Labeling) 訓練
+* 分類問題 (classification)
+    * 預測有限的類別，像是預測貓狗。
+    * KNN屬於此類
+* 回歸問題 (regression)
+    * 預測連續的數值，像是房價、身高體重
+
+### Unsupervised Learning (非監督式學習)
+* 降維 (Dimension Reduction)
+    * 將高維度特徵壓縮成低維度，e.g. PCA
+* Clustering (集群)
+    * 利用資料本身特徵聚類，e.g. K-mean 
+* Anomaly detection (異常檢測)
 
 ---
 
