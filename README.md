@@ -45,9 +45,12 @@
     - [`餘弦相似度(Cosine similarity)`](#餘弦相似度cosine-similarity)
 
 ### NLP 與經典機器學習模型
-- [Day 18 : K-近鄰演算法](#day-18--k-近鄰演算法)
+- [Day 18 : K-近鄰演算法 - 1](#day-18--k-近鄰演算法---1)
     - [Supervised Learning (監督式學習)](#supervised-learning-監督式學習)
     - [Unsupervised Learning (非監督式學習)](#unsupervised-learning-非監督式學習)
+- [Day 19 : K-近鄰演算法 - 2](#day-19--k-近鄰演算法---2)
+    - [K-fold (Cross-validation)](#k-fold-cross-validation)
+- [Day 20 : KNN 實作](#day-20--knn-實作)
 
 ---
 ## Part 2 : NLP 深度學習
@@ -219,6 +222,8 @@ tokenize()     # 斷詞位置標註
     # [2 3] [0 1]
     # [0 1] [2 3]
     ```
+
+## Day 20 : KNN 實作
 
 * 優點
     * 當無法收集到大量的訓練集資料時，透過 K-fold 可以在有限的訓練集內進行多次模型測試
