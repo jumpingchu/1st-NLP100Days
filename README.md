@@ -182,7 +182,7 @@ tokenize()     # 斷詞位置標註
 ### `餘弦相似度(Cosine similarity)`
 * 比較兩個詞向量的相似度最常用的方法
 
-## Day 18 : K-近鄰演算法
+## Day 18 : K-近鄰演算法 - 1
 ### Supervised Learning (監督式學習)
 * 需要標注檔案 (Labeling) 訓練
 * 分類問題 (classification)
@@ -197,6 +197,32 @@ tokenize()     # 斷詞位置標註
 * Clustering (集群)
     * 利用資料本身特徵聚類，e.g. K-mean 
 * Anomaly detection (異常檢測)
+
+## Day 19 : K-近鄰演算法 - 2
+### K-fold (Cross-validation)
+![k-fold](images/k-fold.png)
+* 範例
+    * 100 筆資料切為 5 份，代表每次訓練都會選用 80 筆資料當訓練集，剩下 20 筆資料當驗證集
+    * 持續上述做法，直到所有資料都當過驗證集，切成 5 份代表要訓練 5 次
+    * 要注意每次的訓練要獨立完成，彼此之間不分享資訊
+    * 最後可將 5 組驗證集得到的結果平均，得到最終結果
+
+    ```python
+    # 2-fold cross-validation on a dataset with 4 samples
+    import numpy as np
+    from sklearn.model_selection import KFold
+
+    X = ["a", "b", "c", "d"]
+    kf = KFold(n_splits=2)
+    for train, test in kf.split(X):
+        print("%s %s" % (train, test))
+    # [2 3] [0 1]
+    # [0 1] [2 3]
+    ```
+
+* 優點
+    * 當無法收集到大量的訓練集資料時，透過 K-fold 可以在有限的訓練集內進行多次模型測試
+
 
 ---
 
