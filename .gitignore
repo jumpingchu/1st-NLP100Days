@@ -135,3 +135,4 @@ homework/Day007/data/*
 *.tsv
 *.csv
 *.txt
+data/*

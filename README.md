@@ -223,12 +223,67 @@ tokenize()     # 斷詞位置標註
     # [0 1] [2 3]
     ```
 
-## Day 20 : KNN 實作
-
 * 優點
     * 當無法收集到大量的訓練集資料時，透過 K-fold 可以在有限的訓練集內進行多次模型測試
 
+## Day 20 : KNN 實作
+> 以「垃圾郵件」分類為範例
+###  資料讀取
+* 將 spam / ham 轉為 is_spam = 1 / 0
+###  資料清理
+* pos_tag mapping
+* Lemmatization
+```python
+from nltk.corpus import stopwords
+from nltk.corpus import wordnet
+from nltk.stem import WordNetLemmatizer 
+```
+###  文字轉向量
+* Bag of Words
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+```
+###  KNN 模型導入與參數設置
+* 將資料拆為 train / test
+```python
+from sklearn.model_selection import train_test_split
+```
+* 使用 sklearn KNN classifier API
+```python
+from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifiler(n_neighbors=5, metric='minkowski', p=2)
+classifier.fit(X_train, y_train)
+```
+* n_neighbors : K 值，為 hyperparameters(超參數)，可透過 K-fold 協助選擇最適合 K 值
+* metric : 計算樣本距離的方式，默認設置為 Minkowski，其為歐式距離及曼哈頓距離兩種計算距離的延伸
+* p : 為 Minkowski metric 的超參數，p 為 2 時所使用歐式距離
+###  模型驗證
+```python
+classifier.score(X_test, y_test)
+# 0.9201793721973094
+```
+###  混淆矩陣 (Confusion matrix)
+```python
+from sklearn.metrics import confusion_matrix, accuracy_score
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+accuracy_score(y_test, y_pred)
+# [[949   0]    TP  FN
+#  [ 89  77]]   FP  TN
+```
+###  K-fold 尋找適合 K 值
+```python
+from sklearn.model_selection import cross_val_score
+n_neighbors = [3, 5, 10, 20, 50, 100, 200]
 
+for k in n_neighbors:
+	classifier = KNeighborsClassifier(n_neighbors=k, metric='minkowski', p=2)
+	# cv = 10 代表切成 10 等分
+    # n-jobs = -1 是指 CPU 全開
+	accuracies = cross_val_score(estimator=classifier, X_train, y_train, cv=10, n_jobs=-1)
+	print('Average Accuracy: {}'.format(accuracies.mean()))
+	print('Accuracy STD: {}'.format(accuracies.std()))
+```
 ---
 
 # PART-2: NLP 深度學習
