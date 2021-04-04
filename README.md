@@ -26,23 +26,23 @@
 - [Day 13 : 詞幹/詞條提取](#day-13--詞幹詞條提取)
     - [優點](#優點-1)
     - [缺點](#缺點-1)
-    - [`Stemming`](#stemming)
-    - [`Lemmatization`](#lemmatization)
+    - [Stemming](#stemming)
+    - [Lemmatization](#lemmatization)
     - [SOTA model](#sota-model)
 - [Day 14 : 文字預處理](#day-14--文字預處理)
     - [預處理順序整理](#預處理順序整理)
     - [預測](#預測)
 - [Day 15 : TF-IDF](#day-15--tf-idf)
-    - [`詞頻（term frequency，TF)`](#詞頻term-frequencytf)
-    - [`逆向檔案頻率（inverse document frequency，IDF)`](#逆向檔案頻率inverse-document-frequencyidf)
+    - [詞頻（term frequency，TF)](#詞頻term-frequencytf)
+    - [逆向檔案頻率（inverse document frequency，IDF)](#逆向檔案頻率inverse-document-frequencyidf)
 - [Day 16 - 17: 計數方法詞向量介紹 & 實作](#day-16---17-計數方法詞向量介紹--實作)
-    - [`詞庫法`](#詞庫法)
-    - [`計數法 (One-Hot Encoding)`](#計數法-one-hot-encoding)
-    - [`共現矩陣`](#共現矩陣)
-    - [`點間互資訊 (Pointwise Mutual Information, PMI)`](#點間互資訊-pointwise-mutual-information-pmi)
-    - [`正向點間互資訊(PPMI)`](#正向點間互資訊ppmi)
-    - [`奇異值分解(SVD)`](#奇異值分解svd)
-    - [`餘弦相似度(Cosine similarity)`](#餘弦相似度cosine-similarity)
+    - [詞庫法](#詞庫法)
+    - [計數法 (One-Hot Encoding)](#計數法-one-hot-encoding)
+    - [共現矩陣](#共現矩陣)
+    - [點間互資訊 (Pointwise Mutual Information, PMI)](#點間互資訊-pointwise-mutual-information-pmi)
+    - [正向點間互資訊(PPMI)](#正向點間互資訊ppmi)
+    - [奇異值分解(SVD)](#奇異值分解svd)
+    - [餘弦相似度(Cosine similarity)](#餘弦相似度cosine-similarity)
 
 ### NLP 與經典機器學習模型
 - [Day 18 : K-近鄰演算法 - 1](#day-18--k-近鄰演算法---1)
@@ -51,12 +51,23 @@
 - [Day 19 : K-近鄰演算法 - 2](#day-19--k-近鄰演算法---2)
     - [K-fold (Cross-validation)](#k-fold-cross-validation)
 - [Day 20 : KNN 實作](#day-20--knn-實作)
-
----
-## Part 2 : NLP 深度學習
-
-### Pytorch 深度學習框架
-- [Day 1: Pytorch 深度學習框架與開發環境](#day-1-pytorch-深度學習框架與開發環境part-2day001)
+    - [資料讀取](#資料讀取)
+    - [資料清理](#資料清理)
+    - [文字轉向量](#文字轉向量)
+    - [KNN 模型導入與參數設置](#knn-模型導入與參數設置)
+    - [模型驗證](#模型驗證)
+    - [混淆矩陣 (Confusion matrix)](#混淆矩陣-confusion-matrix)
+    - [K-fold 尋找適合 K 值](#k-fold-尋找適合-k-值)
+- [Day 21 : Naive Bayes 原理](#day-21--naive-bayes-原理)
+- [Day 22 : 手刻 Naive Bayes](#day-21--手刻-Naive-Bayes)
+    - [Functions](#functions)
+        - [`tokenize(message)`](#tokenizemessage)
+        - [`count_words(training_set)`](#count_wordstraining_set)
+        - [`word_probabilities(counts, total_spams, total_non_spams, k=0.5)`](#word_probabilitiescounts-total_spams-total_non_spams-k05)
+        - [`spam_probability(word_probs, message, spam_prob, ham_prob)`](#spam_probabilityword_probs-message-spam_prob-ham_prob)
+    - [下溢](#下溢)
+- [PART-2 : NLP 深度學習](#part-2--nlp-深度學習)
+    - [Day 1 : Pytorch 深度學習框架與開發環境](#day-1--pytorch-深度學習框架與開發環境)
 
 <br>
 
@@ -83,15 +94,15 @@ tokenize()     # 斷詞位置標註
 
 ## Day 7 : 使用 CkipTagger 進行繁體中文斷詞
 * 安裝 ckiptagger, tensorflow, gdown (Google Drive 下載)
-    ```python
-    WS  # 斷詞
-    POS # 詞性標註
-    NER # 實體辨識
+```python
+WS  # 斷詞
+POS # 詞性標註
+NER # 實體辨識
 
-    construct_dictionary(dict_word2weight)
-    recommend_dictionary # 使用建議字典
-    coerce_dictionary    # 使用強制字典（優先）
-    ```
+construct_dictionary(dict_word2weight)
+recommend_dictionary # 使用建議字典
+coerce_dictionary    # 使用強制字典（優先）
+```
 
 ## Day 8 : 基礎語言模型：N-Gram
 ### Bigram 模型
@@ -139,9 +150,9 @@ tokenize()     # 斷詞位置標註
 * 降低複雜度，加快模型訓練速度
 ### 缺點
 * 失去部分訊息 (e.g. ing 時態訊息被刪掉)
-### `Stemming`
+### Stemming
 * 依照規則刪除字尾
-### `Lemmatization`
+### Lemmatization
 * 取出單詞的 Lemma (詞條、詞元 = 字的原型)
 ### SOTA model 
 * 指在特定研究任務或 benchmark（基準） 資料集上，目前最突出的 model。
@@ -164,25 +175,25 @@ tokenize()     # 斷詞位置標註
 * 預測：`classifier.predict()`
 
 ## Day 15 : TF-IDF
-### `詞頻（term frequency，TF)`
+### 詞頻（term frequency，TF)
 * 指的是某一個給定的詞語在該檔案中出現的頻率
-### `逆向檔案頻率（inverse document frequency，IDF)`
+### 逆向檔案頻率（inverse document frequency，IDF)
 * 是詞語普遍重要性的度量，由**總檔案數目**除以**包含該詞語之檔案的數目**，再將得到的**商取以10為底的對數**得到
 * 字詞的重要性隨著它在檔案中出現的次數成正比增加，但同時會隨著它在語料庫中出現的頻率成反比下降
 
 ## Day 16 - 17: 計數方法詞向量介紹 & 實作
-### `詞庫法`
+### 詞庫法
 * 同類型詞彙分類
-### `計數法 (One-Hot Encoding)`
-### `共現矩陣`
+### 計數法 (One-Hot Encoding)
+### 共現矩陣
 * 根據分佈假說，相似的字詞會有類似的上下文，因此我們可以透過計數周圍(window)的字詞來表達特定字詞的向量
-### `點間互資訊 (Pointwise Mutual Information, PMI)`
+### 點間互資訊 (Pointwise Mutual Information, PMI)
 * 共現矩陣在高頻詞下有缺陷，因此使用點間互資訊來解決此問題
-### `正向點間互資訊(PPMI)`
+### 正向點間互資訊(PPMI)
 * 當兩個字詞的共生次數為 0 時，PMI 會產生負無窮大的輸出，為了修正，將 PMI 改為 Positive PMI
-### `奇異值分解(SVD)`
+### 奇異值分解(SVD)
 * 降維手法之一，可將任意矩陣分解為三個矩陣的乘積(兩個方陣與一個對角矩陣)，並利用前 k 個奇異值佔所有奇異值和的大多數的特性來將向量由 n 維降至 k 維
-### `餘弦相似度(Cosine similarity)`
+### 餘弦相似度(Cosine similarity)
 * 比較兩個詞向量的相似度最常用的方法
 
 ## Day 18 : K-近鄰演算法 - 1
