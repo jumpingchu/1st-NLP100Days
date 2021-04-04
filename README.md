@@ -291,10 +291,37 @@ for k in n_neighbors:
 * 獨立假設的定義為，當 A、B 兩個事件是獨立的事件，那聯合機率 `P(A∩B)` 就等於兩個事件各自發生機率的乘積：
 `P(A∩B) = P(A)*P(B)`
 
+## Day 21 : 手刻 Naive Bayes
+### Functions
+#### `tokenize(message)` 
+* 拆解句子
+
+#### `count_words(training_set)`
+* 使用 `defaultdict(lambda: [0, 0])` 建立每個字對應 [垃圾郵件, 非垃圾郵件] 的字典
+
+#### `word_probabilities(counts, total_spams, total_non_spams, k=0.5)`
+* 計算三組數據，分別為 w、p(w|spam)、p(w|non_spam)
+* K 為超參數，為了確保分母/分子皆不為 0
+
+#### `spam_probability(word_probs, message, spam_prob, ham_prob)`
+* 計算所有字的乘績（log 值相加）再指數復原，避免下溢情況
+* 最後返回貝氏 `prob_if_spam / (prob_if_spam + prob_if_not_spam)`
+
+### 下溢
+>接連的小數相乘會出現下溢的情況  
+* 假設一段訊息內有 100 個字，每個字在 spam 中出現的機率是 0.1，那相乘就為 0.1**100，由於電腦紀錄數值是用有限浮點數儲存，太小的數值會導致訊息無法正確儲存
+* 由於連續數值相乘等於取對數(log)相加後再取指數(exponential)因此我們可以將機率取 log，相加後再使用 exp 復原
+    ```python    
+    log_prob_if_spam = log_prob_if_spam + math.log(is_spam_probability)
+
+    #把 + 起來的值轉成 exp 再算 Naive Bayes
+    prob_if_spam = math.exp(log_prob_if_spam)
+    ```
+
 ---
 
-# PART-2: NLP 深度學習
+# PART-2 : NLP 深度學習
 
-## Day 1: [Pytorch 深度學習框架與開發環境](./Part-2/Day001)
+## Day 1 : Pytorch 深度學習框架與開發環境
 
 
