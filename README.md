@@ -284,6 +284,13 @@ for k in n_neighbors:
 	print('Average Accuracy: {}'.format(accuracies.mean()))
 	print('Accuracy STD: {}'.format(accuracies.std()))
 ```
+
+## Day 21 : Naive Bayes 原理
+>在 Naive Bayes 模型中，我們假設所有的輸入特徵都是彼此獨立的
+* 特徵獨立假設為 Naive Bayes 模型中相當重要的一環，這也是 Naive Bayes 中 『Naive』的由來
+* 獨立假設的定義為，當 A、B 兩個事件是獨立的事件，那聯合機率 `P(A∩B)` 就等於兩個事件各自發生機率的乘積：
+`P(A∩B) = P(A)*P(B)`
+
 ---
 
 # PART-2: NLP 深度學習
