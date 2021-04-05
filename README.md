@@ -302,7 +302,7 @@ for k in n_neighbors:
 * 獨立假設的定義為，當 A、B 兩個事件是獨立的事件，那聯合機率 `P(A∩B)` 就等於兩個事件各自發生機率的乘積：
 `P(A∩B) = P(A)*P(B)`
 
-## Day 21 : 手刻 Naive Bayes
+## Day 22 : 手刻 Naive Bayes
 ### Functions
 #### `tokenize(message)` 
 * 拆解句子
@@ -328,6 +328,9 @@ for k in n_neighbors:
     #把 + 起來的值轉成 exp 再算 Naive Bayes
     prob_if_spam = math.exp(log_prob_if_spam)
     ```
+
+## Day 23 : Naive Bayes 實作
+![]()
 
 ---
 
