@@ -66,8 +66,16 @@
         - [`word_probabilities(counts, total_spams, total_non_spams, k=0.5)`](#word_probabilitiescounts-total_spams-total_non_spams-k05)
         - [`spam_probability(word_probs, message, spam_prob, ham_prob)`](#spam_probabilityword_probs-message-spam_prob-ham_prob)
     - [下溢](#下溢)
-- [PART-2 : NLP 深度學習](#part-2--nlp-深度學習)
-    - [Day 1 : Pytorch 深度學習框架與開發環境](#day-1--pytorch-深度學習框架與開發環境)
+- [Day 23 : Naive Bayes 實作](#day-23--naive-bayes-實作)
+    - [優點](#優點-2)
+    - [缺點](#缺點-2)
+- [Day 24 : 決策樹演算法 (Decision Tree)](#day-24--決策樹演算法-decision-tree)
+    - [監督式學習](#監督式學習)
+    - [決策樹](#決策樹)
+        - [常見資訊量有兩種](#常見資訊量有兩種)
+        - [Feature Importance](#feature-importance)
+        - [優點：](#優點)
+        - [缺點：](#缺點)
 
 <br>
 
@@ -330,12 +338,55 @@ for k in n_neighbors:
     ```
 
 ## Day 23 : Naive Bayes 實作
-![]()
+### 優點
+* 速度快且準確
+* 模型解釋性高
+* 在模型假設成立下，通常表現較其他 ML 算法準確
 
----
+### 缺點
+* 嚴格的前提假設 (所有特徵皆互相獨立)，也是稱為 Naive 的由來。
+* 對連續型特徵的表現通常較差 (由於 Gaussian naive bayes 的前題假設為所有特徵皆符合高斯分佈)。
 
-# PART-2 : NLP 深度學習
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer(maz_features=3600)
+X_T = cv.fit_transform(X).toarray()
 
-## Day 1 : Pytorch 深度學習框架與開發環境
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X_T, Y, test_size=0.2)
 
+from sklearn.naive_bayes import MultinomialNB
+clf_M = MultinomialNB()
+clf_M.fit(X_train, y_train)
+```
+![bayes_models](images/bayes-models.png)
 
+## Day 24 : 決策樹演算法 (Decision Tree)
+### 監督式學習
+* 回歸模型：給定輸入資料特徵，模型輸出連續預測值 (e.g. 房價、股價預測)
+* 分類模型：給定輸入資料特徵，模型輸出離散類別預測 (e.g. 文章情緒分類、垃圾郵件分類)
+* 決策樹是這兩種中常用的機器學習模型
+
+### 決策樹
+決策樹會透過訓練資料，從最上方的根節點開始找出規則將資料依據特徵分割到節點兩側
+分割時的原則是將較高同性質的資料放置於相同側以得到最大的訊息增益 (Information Gain, IG)
+
+#### 常見資訊量有兩種
+1. 熵 (Entropy)
+2. Gini 不純度 (Gini Impurity)
+* 都在衡量一個序列中的混亂程度，值越高越混亂
+* 數值都在 0 ~ 1 之間 (0 代表序列純度高，皆為同樣的值(類別))
+
+#### Feature Importance
+* 利用 feature 被用來切分的次數來得知哪些特徵是相對有用
+* 透過 feature importance 來排序特徵的重要性，來選擇要使用的特徵
+* 所有的 feature importance 的總和 = 1
+
+#### 優點
+* 算法簡單、易理解與解釋
+* 適合處理有缺失值的樣本
+* 能處理數值型與類別型的資料
+
+#### 缺點
+* 容易發生過擬合
+* 為考慮數據間的相關聯性
