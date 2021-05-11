@@ -45,12 +45,54 @@
     - [餘弦相似度(Cosine similarity)](#餘弦相似度cosine-similarity)
 
 ### NLP 與經典機器學習模型
-- [Day 18 : K-近鄰演算法 - 1](#day-18--k-近鄰演算法---1)
+- [第一屆《 NLP 自然語言機器學習馬拉松 》](#第一屆-nlp-自然語言機器學習馬拉松-)
+  - [Part 1 : NLP 經典機器學習](#part-1--nlp-經典機器學習)
+    - [Python NLP 程式基礎](#python-nlp-程式基礎)
+    - [詞彙與分詞技術](#詞彙與分詞技術)
+    - [NLP詞性標註方法](#nlp詞性標註方法)
+    - [文字預處理與詞向量技術](#文字預處理與詞向量技術)
+    - [NLP 與經典機器學習模型](#nlp-與經典機器學習模型)
+  - [Day 1 ~ 4 : Python 文字處理函數介紹、正規表達式](#day-1--4--python-文字處理函數介紹正規表達式)
+  - [Day 5 : NLP 中文斷詞概念](#day-5--nlp-中文斷詞概念)
+    - [Trie 樹](#trie-樹)
+    - [隱馬可夫模型 HMM](#隱馬可夫模型-hmm)
+    - [維特比動態規劃演算法 Viterbi](#維特比動態規劃演算法-viterbi)
+  - [Day 6 : 使用 Jieba 進行中文斷詞](#day-6--使用-jieba-進行中文斷詞)
+  - [Day 7 : 使用 CkipTagger 進行繁體中文斷詞](#day-7--使用-ckiptagger-進行繁體中文斷詞)
+  - [Day 8 : 基礎語言模型：N-Gram](#day-8--基礎語言模型n-gram)
+    - [Bigram 模型](#bigram-模型)
+  - [Day 9 : 基礎語言模型：N-Gram](#day-9--基礎語言模型n-gram)
+  - [Day 10 - 11: 詞性標註 (POS Tagging)](#day-10---11-詞性標註-pos-tagging)
+  - [Day 12 : 詞袋模型 (Bag-of-words)](#day-12--詞袋模型-bag-of-words)
+    - [步驟](#步驟)
+    - [優點](#優點)
+    - [缺點](#缺點)
+  - [Day 13 : 詞幹/詞條提取](#day-13--詞幹詞條提取)
+    - [優點](#優點-1)
+    - [缺點](#缺點-1)
+    - [Stemming](#stemming)
+    - [Lemmatization](#lemmatization)
+    - [SOTA model](#sota-model)
+  - [Day 14 : 文字預處理](#day-14--文字預處理)
+    - [預處理順序整理](#預處理順序整理)
+    - [預測](#預測)
+  - [Day 15 : TF-IDF](#day-15--tf-idf)
+    - [詞頻（term frequency，TF)](#詞頻term-frequencytf)
+    - [逆向檔案頻率（inverse document frequency，IDF)](#逆向檔案頻率inverse-document-frequencyidf)
+  - [Day 16 - 17: 計數方法詞向量介紹 & 實作](#day-16---17-計數方法詞向量介紹--實作)
+    - [詞庫法](#詞庫法)
+    - [計數法 (One-Hot Encoding)](#計數法-one-hot-encoding)
+    - [共現矩陣](#共現矩陣)
+    - [點間互資訊 (Pointwise Mutual Information, PMI)](#點間互資訊-pointwise-mutual-information-pmi)
+    - [正向點間互資訊(PPMI)](#正向點間互資訊ppmi)
+    - [奇異值分解(SVD)](#奇異值分解svd)
+    - [餘弦相似度(Cosine similarity)](#餘弦相似度cosine-similarity)
+  - [Day 18 : K-近鄰演算法 - 1](#day-18--k-近鄰演算法---1)
     - [Supervised Learning (監督式學習)](#supervised-learning-監督式學習)
     - [Unsupervised Learning (非監督式學習)](#unsupervised-learning-非監督式學習)
-- [Day 19 : K-近鄰演算法 - 2](#day-19--k-近鄰演算法---2)
+  - [Day 19 : K-近鄰演算法 - 2](#day-19--k-近鄰演算法---2)
     - [K-fold (Cross-validation)](#k-fold-cross-validation)
-- [Day 20 : KNN 實作](#day-20--knn-實作)
+  - [Day 20 : KNN 實作](#day-20--knn-實作)
     - [資料讀取](#資料讀取)
     - [資料清理](#資料清理)
     - [文字轉向量](#文字轉向量)
@@ -58,29 +100,35 @@
     - [模型驗證](#模型驗證)
     - [混淆矩陣 (Confusion matrix)](#混淆矩陣-confusion-matrix)
     - [K-fold 尋找適合 K 值](#k-fold-尋找適合-k-值)
-- [Day 21 : Naive Bayes 原理](#day-21--naive-bayes-原理)
-- [Day 22 : 手刻 Naive Bayes](#day-21--手刻-Naive-Bayes)
+  - [Day 21 : Naive Bayes 原理](#day-21--naive-bayes-原理)
+  - [Day 22 : 手刻 Naive Bayes](#day-22--手刻-naive-bayes)
     - [Functions](#functions)
-        - [`tokenize(message)`](#tokenizemessage)
-        - [`count_words(training_set)`](#count_wordstraining_set)
-        - [`word_probabilities(counts, total_spams, total_non_spams, k=0.5)`](#word_probabilitiescounts-total_spams-total_non_spams-k05)
-        - [`spam_probability(word_probs, message, spam_prob, ham_prob)`](#spam_probabilityword_probs-message-spam_prob-ham_prob)
+      - [`tokenize(message)`](#tokenizemessage)
+      - [`count_words(training_set)`](#count_wordstraining_set)
+      - [`word_probabilities(counts, total_spams, total_non_spams, k=0.5)`](#word_probabilitiescounts-total_spams-total_non_spams-k05)
+      - [`spam_probability(word_probs, message, spam_prob, ham_prob)`](#spam_probabilityword_probs-message-spam_prob-ham_prob)
     - [下溢](#下溢)
-- [Day 23 : Naive Bayes 實作](#day-23--naive-bayes-實作)
+  - [Day 23 : Naive Bayes 實作](#day-23--naive-bayes-實作)
     - [優點](#優點-2)
     - [缺點](#缺點-2)
-- [Day 24 : 決策樹演算法 (Decision Tree)](#day-24--決策樹演算法-decision-tree)
+  - [Day 24 : 決策樹演算法 (Decision Tree)](#day-24--決策樹演算法-decision-tree)
     - [監督式學習](#監督式學習)
     - [決策樹](#決策樹)
-        - [常見資訊量有兩種](#常見資訊量有兩種)
-        - [Feature Importance](#feature-importance)
-        - [優點](#優點)
-        - [缺點](#缺點)
-- [Day 25 : 隨機森林演算法 (Random Forest)](#day-25--隨機森林演算法-random-forest)
+      - [常見資訊量有兩種](#常見資訊量有兩種)
+      - [Feature Importance](#feature-importance)
+      - [優點](#優點-3)
+      - [缺點](#缺點-3)
+  - [Day 25 : 隨機森林演算法 (Random Forest)](#day-25--隨機森林演算法-random-forest)
     - [決策樹的限制](#決策樹的限制)
     - [集成學習 Ensemble Learning](#集成學習-ensemble-learning)
     - [Bagging 算法](#bagging-算法)
     - [隨機森林優缺點](#隨機森林優缺點)
+  - [Day 26 : Adaboost](#day-26--adaboost)
+    - [Boosting](#boosting)
+    - [Adaboost](#adaboost)
+    - [優缺點](#優缺點)
+  - [Day 27~28 : 實作樹型(Tree Base)模型](#day-2728--實作樹型tree-base模型)
+
 
 <br>
 
@@ -418,3 +466,32 @@ clf_M.fit(X_train, y_train)
 1. 所需的訓練時間與空間(複雜度)較大
 2. 對於小資料或特徵較少的資料，效果較不好
 3. 相較於決策樹，可解釋性較不足
+
+## Day 26 : Adaboost
+
+### Boosting
+* 屬於 Bagging 的變形，是另外一個常見的集成學習手法
+* 將模型以序列的方式串接，透過加強學習前一步的錯誤，來增強這一步模型的表現
+* 與 Bagging 不同的是 Boosting 的取樣會著重在錯誤樣本上
+* 給予上輪錯誤的樣本較高的機率權重 (更容易被抽中)
+* 從訓練集非均勻抽樣 (non-uniform sampling) 取出訓練子集 (錯誤樣本較易被抽中)
+* Bagging 與 Boosting 皆採用多數決，但 Boosting 會依據分類器表現給予不同權重（大家都有投票權，但每張票的價值不同）
+* 在訓練時準確度較高的給較高的權重，相反的準確度較低的給予較低的權重
+
+### Adaboost
+* Adaboost 是一種對 Boosting 做改良的演算法
+* 其在訓練每個模型時不重新取樣訓練資料，而是透過將分類錯誤的樣本權重提高，來使每次新訓練的模型都聚焦在容易分類錯誤的樣本上
+* 進行預測時一樣採用加權投票機制 (錯誤率高之模型 —> 權重低)
+
+### 優缺點
+* 優點
+  * 良好的利用弱分類器進行集成
+  * 高精準度
+  * 充分考慮不同分類器的權重分佈
+
+* 缺點：
+  * 數據不平衡時會使分類精準度下降
+  * 對資料的雜訊較敏感
+  * 訓練所需的時間較長
+  
+## Day 27~28 : 實作樹型(Tree Base)模型
