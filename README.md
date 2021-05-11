@@ -1,68 +1,19 @@
 # 第一屆《 NLP 自然語言機器學習馬拉松 》
 
-## Part 1 : NLP 經典機器學習
-### Python NLP 程式基礎
-- [Day 1 ~ 4 : Python 文字處理函數介紹、正規表達式](#day-1--4--python-文字處理函數介紹正規表達式)
-
-### 詞彙與分詞技術
-- [Day 5 : NLP 中文斷詞概念](#day-5--nlp-中文斷詞概念)
-    - [Trie 樹](#trie-樹)
-    - [隱馬可夫模型 HMM](#隱馬可夫模型-hmm)
-    - [維特比動態規劃演算法 Viterbi](#維特比動態規劃演算法-viterbi)
-- [Day 6 : 使用 Jieba 進行中文斷詞](#day-6--使用-jieba-進行中文斷詞)
-- [Day 7 : 使用 CkipTagger 進行繁體中文斷詞](#day-7--使用-ckiptagger-進行繁體中文斷詞)
-- [Day 8 : 基礎語言模型：N-Gram](#day-8--基礎語言模型n-gram)
-    - [Bigram 模型](#bigram-模型)
-- [Day 9 : 基礎語言模型：N-Gram](#day-9--基礎語言模型n-gram)
-
-### NLP詞性標註方法
-- [Day 10 - 11: 詞性標註 (POS Tagging)](#day-10---11-詞性標註-pos-tagging)
-
-### 文字預處理與詞向量技術
-- [Day 12 : 詞袋模型 (Bag-of-words)](#day-12--詞袋模型-bag-of-words)
-    - [步驟](#步驟)
-    - [優點](#優點)
-    - [缺點](#缺點)
-- [Day 13 : 詞幹/詞條提取](#day-13--詞幹詞條提取)
-    - [優點](#優點-1)
-    - [缺點](#缺點-1)
-    - [Stemming](#stemming)
-    - [Lemmatization](#lemmatization)
-    - [SOTA model](#sota-model)
-- [Day 14 : 文字預處理](#day-14--文字預處理)
-    - [預處理順序整理](#預處理順序整理)
-    - [預測](#預測)
-- [Day 15 : TF-IDF](#day-15--tf-idf)
-    - [詞頻（term frequency，TF)](#詞頻term-frequencytf)
-    - [逆向檔案頻率（inverse document frequency，IDF)](#逆向檔案頻率inverse-document-frequencyidf)
-- [Day 16 - 17: 計數方法詞向量介紹 & 實作](#day-16---17-計數方法詞向量介紹--實作)
-    - [詞庫法](#詞庫法)
-    - [計數法 (One-Hot Encoding)](#計數法-one-hot-encoding)
-    - [共現矩陣](#共現矩陣)
-    - [點間互資訊 (Pointwise Mutual Information, PMI)](#點間互資訊-pointwise-mutual-information-pmi)
-    - [正向點間互資訊(PPMI)](#正向點間互資訊ppmi)
-    - [奇異值分解(SVD)](#奇異值分解svd)
-    - [餘弦相似度(Cosine similarity)](#餘弦相似度cosine-similarity)
-
-### NLP 與經典機器學習模型
 - [第一屆《 NLP 自然語言機器學習馬拉松 》](#第一屆-nlp-自然語言機器學習馬拉松-)
-  - [Part 1 : NLP 經典機器學習](#part-1--nlp-經典機器學習)
-    - [Python NLP 程式基礎](#python-nlp-程式基礎)
-    - [詞彙與分詞技術](#詞彙與分詞技術)
-    - [NLP詞性標註方法](#nlp詞性標註方法)
-    - [文字預處理與詞向量技術](#文字預處理與詞向量技術)
-    - [NLP 與經典機器學習模型](#nlp-與經典機器學習模型)
+- [Part 1 : NLP 經典機器學習](#part-1--nlp-經典機器學習)
+- [Python NLP 程式基礎](#python-nlp-程式基礎)
   - [Day 1 ~ 4 : Python 文字處理函數介紹、正規表達式](#day-1--4--python-文字處理函數介紹正規表達式)
+- [詞彙與分詞技術](#詞彙與分詞技術)
   - [Day 5 : NLP 中文斷詞概念](#day-5--nlp-中文斷詞概念)
-    - [Trie 樹](#trie-樹)
-    - [隱馬可夫模型 HMM](#隱馬可夫模型-hmm)
-    - [維特比動態規劃演算法 Viterbi](#維特比動態規劃演算法-viterbi)
   - [Day 6 : 使用 Jieba 進行中文斷詞](#day-6--使用-jieba-進行中文斷詞)
   - [Day 7 : 使用 CkipTagger 進行繁體中文斷詞](#day-7--使用-ckiptagger-進行繁體中文斷詞)
   - [Day 8 : 基礎語言模型：N-Gram](#day-8--基礎語言模型n-gram)
     - [Bigram 模型](#bigram-模型)
   - [Day 9 : 基礎語言模型：N-Gram](#day-9--基礎語言模型n-gram)
+- [NLP 詞性標註方法](#nlp-詞性標註方法)
   - [Day 10 - 11: 詞性標註 (POS Tagging)](#day-10---11-詞性標註-pos-tagging)
+- [文字預處理與詞向量技術](#文字預處理與詞向量技術)
   - [Day 12 : 詞袋模型 (Bag-of-words)](#day-12--詞袋模型-bag-of-words)
     - [步驟](#步驟)
     - [優點](#優點)
@@ -87,6 +38,7 @@
     - [正向點間互資訊(PPMI)](#正向點間互資訊ppmi)
     - [奇異值分解(SVD)](#奇異值分解svd)
     - [餘弦相似度(Cosine similarity)](#餘弦相似度cosine-similarity)
+- [NLP 與經典機器學習模型](#nlp-與經典機器學習模型)
   - [Day 18 : K-近鄰演算法 - 1](#day-18--k-近鄰演算法---1)
     - [Supervised Learning (監督式學習)](#supervised-learning-監督式學習)
     - [Unsupervised Learning (非監督式學習)](#unsupervised-learning-非監督式學習)
@@ -128,6 +80,7 @@
     - [Adaboost](#adaboost)
     - [優缺點](#優缺點)
   - [Day 27~28 : 實作樹型(Tree Base)模型](#day-2728--實作樹型tree-base模型)
+- [期末實務專題](#期末實務專題)
 
 
 <br>
@@ -135,12 +88,20 @@
 ---
 <br>
 
+# Part 1 : NLP 經典機器學習
+
+<br>
+
+# Python NLP 程式基礎
 ## Day 1 ~ 4 : Python 文字處理函數介紹、正規表達式
 
+<br>
+
+# 詞彙與分詞技術
 ## Day 5 : NLP 中文斷詞概念
-### Trie 樹
-### 隱馬可夫模型 HMM
-### 維特比動態規劃演算法 Viterbi
+* Trie 樹
+* 隱馬可夫模型 HMM
+* 維特比動態規劃演算法 Viterbi
 
 ## Day 6 : 使用 Jieba 進行中文斷詞
 ```python
@@ -179,6 +140,10 @@ coerce_dictionary    # 使用強制字典（優先）
 * `namedtuple(Name, attr)` 的使用
 * `sorted(iter_obj, key=lambda x: x[index])` 代表設定 x[index] 為排序依據
 
+<br>
+
+# NLP 詞性標註方法
+
 ## Day 10 - 11: 詞性標註 (POS Tagging)
 * 決定單詞的詞性前，除了考慮單詞本身，也要考慮前後單詞與整句話
 * 通常一個單詞會包含多種詞性
@@ -189,6 +154,10 @@ coerce_dictionary    # 使用強制字典（優先）
 * `Open Class`：容易有新詞被創造
     * 如 `Noun`、`Verb`、`Adjective`等等
 * `jieba.cut()`回傳一個 Generator，記得使用 `join` 來 `print`
+
+<br>
+
+# 文字預處理與詞向量技術
 
 ## Day 12 : 詞袋模型 (Bag-of-words)
 ### 步驟
@@ -256,6 +225,10 @@ coerce_dictionary    # 使用強制字典（優先）
 * 降維手法之一，可將任意矩陣分解為三個矩陣的乘積(兩個方陣與一個對角矩陣)，並利用前 k 個奇異值佔所有奇異值和的大多數的特性來將向量由 n 維降至 k 維
 ### 餘弦相似度(Cosine similarity)
 * 比較兩個詞向量的相似度最常用的方法
+
+<br>
+
+# NLP 與經典機器學習模型
 
 ## Day 18 : K-近鄰演算法 - 1
 ### Supervised Learning (監督式學習)
@@ -495,3 +468,7 @@ clf_M.fit(X_train, y_train)
   * 訓練所需的時間較長
   
 ## Day 27~28 : 實作樹型(Tree Base)模型
+
+<br>
+
+# 期末實務專題
