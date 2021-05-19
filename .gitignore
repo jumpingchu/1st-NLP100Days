@@ -131,7 +131,7 @@ dmypy.json
 .DS_Store/*
 .DS_Store
 *.zip
-homework/Day007/data/*
+Part-1/homework/Day007/data/*
 *.tsv
 *.csv
 *.txt
