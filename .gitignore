@@ -136,3 +136,4 @@ Part-1/homework/Day007/data/*
 *.csv
 *.txt
 data/*
+*.json
