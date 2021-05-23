@@ -537,6 +537,7 @@ y_pred = forest.predict(x_test)
 
 ### 搭配 AdaBoost 實作
 ```py
+# 決策樹
 base_estimator_tree = DecisionTreeClassifier(
   criterion='gini', 
   max_depth=6)
@@ -549,6 +550,7 @@ adaboost = AdaBoostClassifier(
 adaboost.fit(x_train, y_train)
 y_pred = adaboost.predict(x_test)
 
+# 隨機森林
 base_estimator_forest = RandomForestClassifier(
   n_estimators=50,
   criterion='gini',
