@@ -55,21 +55,16 @@
   - [Day 21 : Naive Bayes 原理](#day-21--naive-bayes-原理)
   - [Day 22 : 手刻 Naive Bayes](#day-22--手刻-naive-bayes)
     - [Functions](#functions)
-      - [`tokenize(message)`](#tokenizemessage)
-      - [`count_words(training_set)`](#count_wordstraining_set)
-      - [`word_probabilities(counts, total_spams, total_non_spams, k=0.5)`](#word_probabilitiescounts-total_spams-total_non_spams-k05)
-      - [`spam_probability(word_probs, message, spam_prob, ham_prob)`](#spam_probabilityword_probs-message-spam_prob-ham_prob)
-    - [下溢](#下溢)
+    - [何謂下溢？](#何謂下溢)
   - [Day 23 : Naive Bayes 實作](#day-23--naive-bayes-實作)
     - [優點](#優點-2)
     - [缺點](#缺點-2)
   - [Day 24 : 決策樹演算法 (Decision Tree)](#day-24--決策樹演算法-decision-tree)
     - [監督式學習](#監督式學習)
     - [決策樹](#決策樹)
-      - [常見資訊量有兩種](#常見資訊量有兩種)
+      - [常見資訊量有 Entropy, Gini Impurity](#常見資訊量有-entropy-gini-impurity)
       - [Feature Importance](#feature-importance)
-      - [優點](#優點-3)
-      - [缺點](#缺點-3)
+    - [優缺點](#優缺點)
   - [Day 25 : 隨機森林演算法 (Random Forest)](#day-25--隨機森林演算法-random-forest)
     - [決策樹的限制](#決策樹的限制)
     - [集成學習 Ensemble Learning](#集成學習-ensemble-learning)
@@ -78,8 +73,13 @@
   - [Day 26 : Adaboost](#day-26--adaboost)
     - [Boosting](#boosting)
     - [Adaboost](#adaboost)
-    - [優缺點](#優缺點)
+    - [優缺點](#優缺點-1)
   - [Day 27~28 : 實作樹型(Tree Base)模型](#day-2728--實作樹型tree-base模型)
+    - [主要重點套件](#主要重點套件)
+    - [訓練＆測試資料準備](#訓練測試資料準備)
+    - [決策樹實作](#決策樹實作)
+    - [隨機森林實作](#隨機森林實作)
+    - [搭配 AdaBoost 實作](#搭配-adaboost-實作)
 - [期末實務專題](#期末實務專題)
 
 
@@ -338,21 +338,21 @@ for k in n_neighbors:
 
 ## Day 22 : 手刻 Naive Bayes
 ### Functions
-#### `tokenize(message)` 
+* `tokenize(message)` 
 * 拆解句子
 
-#### `count_words(training_set)`
+* `count_words(training_set)`
 * 使用 `defaultdict(lambda: [0, 0])` 建立每個字對應 [垃圾郵件, 非垃圾郵件] 的字典
 
-#### `word_probabilities(counts, total_spams, total_non_spams, k=0.5)`
+* `word_probabilities(counts, total_spams, total_non_spams, k=0.5)`
 * 計算三組數據，分別為 w、p(w|spam)、p(w|non_spam)
 * K 為超參數，為了確保分母/分子皆不為 0
 
-#### `spam_probability(word_probs, message, spam_prob, ham_prob)`
+* `spam_probability(word_probs, message, spam_prob, ham_prob)`
 * 計算所有字的乘績（log 值相加）再指數復原，避免下溢情況
 * 最後返回貝氏 `prob_if_spam / (prob_if_spam + prob_if_not_spam)`
 
-### 下溢
+### 何謂下溢？
 >接連的小數相乘會出現下溢的情況  
 * 假設一段訊息內有 100 個字，每個字在 spam 中出現的機率是 0.1，那相乘就為 0.1**100，由於電腦紀錄數值是用有限浮點數儲存，太小的數值會導致訊息無法正確儲存
 * 由於連續數值相乘等於取對數(log)相加後再取指數(exponential)因此我們可以將機率取 log，相加後再使用 exp 復原
@@ -397,7 +397,7 @@ clf_M.fit(X_train, y_train)
 決策樹會透過訓練資料，從最上方的根節點開始找出規則將資料依據特徵分割到節點兩側
 分割時的原則是將較高同性質的資料放置於相同側以得到最大的訊息增益 (Information Gain, IG)
 
-#### 常見資訊量有兩種
+#### 常見資訊量有 Entropy, Gini Impurity
 1. 熵 (Entropy)
 2. Gini 不純度 (Gini Impurity)
 * 都在衡量一個序列中的混亂程度，值越高越混亂
@@ -408,14 +408,15 @@ clf_M.fit(X_train, y_train)
 * 透過 feature importance 來排序特徵的重要性，來選擇要使用的特徵
 * 所有的 feature importance 的總和 = 1
 
-#### 優點
-* 算法簡單、易理解與解釋
-* 適合處理有缺失值的樣本
-* 能處理數值型與類別型的資料
+### 優缺點
+* 優點
+  * 算法簡單、易理解與解釋
+  * 適合處理有缺失值的樣本
+  * 能處理數值型與類別型的資料
 
-#### 缺點
-* 容易發生過擬合
-* 為考慮數據間的相關聯性
+* 缺點
+  * 容易發生過擬合
+  * 為考慮數據間的相關聯性
 
 ## Day 25 : 隨機森林演算法 (Random Forest)
 ### 決策樹的限制
@@ -451,6 +452,8 @@ clf_M.fit(X_train, y_train)
 * Bagging 與 Boosting 皆採用多數決，但 Boosting 會依據分類器表現給予不同權重（大家都有投票權，但每張票的價值不同）
 * 在訓練時準確度較高的給較高的權重，相反的準確度較低的給予較低的權重
 
+![bagging_vs_boosting](../1st-NLP100Days/images/bagging_vs_boosting.png)
+
 ### Adaboost
 * Adaboost 是一種對 Boosting 做改良的演算法
 * 其在訓練每個模型時不重新取樣訓練資料，而是透過將分類錯誤的樣本權重提高，來使每次新訓練的模型都聚焦在容易分類錯誤的樣本上
@@ -469,6 +472,96 @@ clf_M.fit(X_train, y_train)
   
 ## Day 27~28 : 實作樹型(Tree Base)模型
 
+### 主要重點套件
+```py
+# 訓練＆測試資料分配
+from sklearn.model_selection import train_test_split
+
+# 繪製決策樹
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
+
+# 決策樹
+from sklearn.tree import DecisionTreeClassifier
+
+# 集成學習（AdaBoost、隨機森林）
+from sklearn.ensemble import AdaBoostClassifier, RandomForestClassifier
+
+# 繪製混淆矩陣
+from sklearn.metrics import plot_confusion_matrix
+```
+
+### 訓練＆測試資料準備
+```py
+# corpus: 評論文本
+# labels: 評分
+x_train, x_test, y_train, y_test = train_test_split(corpus, labels, test_size=0.2)
+
+# 文本向量化
+vectorizer = TfidfVectorizer()
+vectorizer.fit(x_train)
+x_train = vectorizer.transform(x_train)
+x_test = vectorizer.transform(x_test)
+```
+
+### 決策樹實作
+```py
+tree = DecisionTreeClassifier(criterion='gini', max_depth=6)
+tree.fit(x_train, y_train)
+y_pred = tree.predict(x_test)
+
+# 計算準確度
+print(f'Accuracy: {tree.score(x_test, y_test)}')
+
+# confusion matrix, precision, recall, and f1-score
+print(classification_report(y_test, y_pred))
+print(confusion_matrix(y_test, y_pred))
+
+# 繪製決策樹
+plt.figure(figsize=(20,20))
+plot_tree(tree, max_depth=3, filled=True, rounded=True, fontsize=14);
+
+# 繪製混淆矩陣
+fig, ax = plt.subplots(figsize=(10, 10))
+plot_confusion_matrix(tree, x_test, y_test, ax=ax);
+```
+
+### 隨機森林實作
+```py
+forest = RandomForestClassifier(n_estimators=50,
+                                criterion='gini',
+                                max_depth=6)
+forest.fit(x_train, y_train)
+y_pred = forest.predict(x_test)
+```
+
+### 搭配 AdaBoost 實作
+```py
+base_estimator_tree = DecisionTreeClassifier(
+  criterion='gini', 
+  max_depth=6)
+
+adaboost = AdaBoostClassifier(
+  base_estimator=base_estimator_tree,
+  n_estimators=50,
+  learning_rate=0.8)
+
+adaboost.fit(x_train, y_train)
+y_pred = adaboost.predict(x_test)
+
+base_estimator_forest = RandomForestClassifier(
+  n_estimators=50,
+  criterion='gini',
+  max_depth=6)
+
+adaboost = AdaBoostClassifier(
+  base_estimator=base_estimator_forest,
+  n_estimators=50,
+  learning_rate=0.8)
+  
+adaboost.fit(x_train, y_train)
+y_pred = adaboost.predict(x_test)
+```
 <br>
 
 # 期末實務專題
