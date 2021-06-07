@@ -138,3 +138,4 @@ Part-1/homework/Day007/data/*
 data/*
 *.json
 *.data
+venv-spam/
