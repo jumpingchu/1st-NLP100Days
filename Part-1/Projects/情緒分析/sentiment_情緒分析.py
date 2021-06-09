@@ -106,6 +106,7 @@ def tokens_to_vector(tokens, label):
     return x
 
 N = len(positive_tokenized) + len(negative_tokenized)
+
 # (N x D+1) 矩陣 - 擺在一塊將來便於shuffle
 data = np.zeros((N, len(word_index_map) + 1))
 i = 0
