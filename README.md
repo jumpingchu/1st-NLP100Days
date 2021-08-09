@@ -567,3 +567,12 @@ y_pred = adaboost.predict(x_test)
 <br>
 
 # 期末實務專題
+
+1. [中文選字系統](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/中文選字系統)
+2. [新聞分類器](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/新聞分類器)
+3. [垃圾郵件偵測](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/垃圾郵件偵測)
+4. [情緒分析](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/情緒分析)
+5. [潛在語意分析](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/潛在語意分析)
+6. [三連詞(Trigram)](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/三連詞(Trigram))
+7. [Rule-based chatbot (單輪對話)](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/Rule-based-chatbot(單輪對話))
+8. [聊天機器人(多輪情境)](https://github.com/jumpingchu/1st-NLP100Days/tree/main/Part-1/Projects/聊天機器人(多輪情境))
